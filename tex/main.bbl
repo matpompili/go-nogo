@@ -1,0 +1,93 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 2.9 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{nty/global//global/global}
+    \entry{Humphreys2018}{article}{}
+      \name{author}{8}{}{%
+        {{hash=b71d17e3e19756bbf71bde05dca6dc90}{%
+           family={Humphreys},
+           familyi={H\bibinitperiod},
+           given={Peter\bibnamedelima C.},
+           giveni={P\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=5d423c4ea998407b27c2b1131151133c}{%
+           family={Kalb},
+           familyi={K\bibinitperiod},
+           given={Norbert},
+           giveni={N\bibinitperiod}}}%
+        {{hash=5b097606a2ff081c23ce043424adb81e}{%
+           family={Morits},
+           familyi={M\bibinitperiod},
+           given={Jaco\bibnamedelimb P.\bibnamedelimi J.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=a9e71ae741fec8fcaf5b63c73837f9bd}{%
+           family={Schouten},
+           familyi={S\bibinitperiod},
+           given={Raymond\bibnamedelima N.},
+           giveni={R\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=0cb37d4d70b04f4b37e245939eb4a2fb}{%
+           family={Vermeulen},
+           familyi={V\bibinitperiod},
+           given={Raymond\bibnamedelimb F.\bibnamedelimi L.},
+           giveni={R\bibinitperiod\bibinitdelim F\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=e3e8405f4b00626462cb7e972affe661}{%
+           family={Twitchen},
+           familyi={T\bibinitperiod},
+           given={Daniel\bibnamedelima J.},
+           giveni={D\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=a3b0a3b5c985a35350da5a63677a458b}{%
+           family={Markham},
+           familyi={M\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=cf62fb82711544086ac7cb0c289f5043}{%
+           family={Hanson},
+           familyi={H\bibinitperiod},
+           given={Ronald},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Nature}%
+      }
+      \strng{namehash}{f208d701ef2723bdf3536ef9c2229e00}
+      \strng{fullhash}{a8fff2a275047c5c65e9f10e89dee8d4}
+      \strng{bibnamehash}{f208d701ef2723bdf3536ef9c2229e00}
+      \strng{authorbibnamehash}{f208d701ef2723bdf3536ef9c2229e00}
+      \strng{authornamehash}{f208d701ef2723bdf3536ef9c2229e00}
+      \strng{authorfullhash}{a8fff2a275047c5c65e9f10e89dee8d4}
+      \field{sortinit}{H}
+      \field{sortinithash}{5f15a7bc777ad49ff15aa4d2831b1681}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Nature}
+      \field{month}{6}
+      \field{number}{7709}
+      \field{title}{Deterministic delivery of remote entanglement on a quantum network}
+      \field{volume}{558}
+      \field{year}{2018}
+      \field{pages}{268\bibrangedash 273}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1038/s41586-018-0200-5
+      \endverb
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+
