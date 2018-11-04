@@ -1,8 +1,18 @@
+% !TeX spellcheck = en_GB
 \documentclass[a4paper]{article}
 \usepackage[british]{babel}
 \usepackage{classicthesis}
 \usepackage{geometry}
 \geometry{lmargin=3cm,rmargin=3cm,bmargin=3cm,tmargin=3cm}
+% ACRONYMS
+\usepackage[printonlyused]{acronym}
+\acrodef{NV}{Nitrogen-Vacancy}
+\acrodef{ESR}{Early Stage Researcher}
+\acrodef{ITN}{Innovative Training Network}
+\acrodef{MSCA}{Marie Skłodowska-Curie Actions}
+% END ACRONYMS
+
+\usepackage{siunitx}
 
 \usepackage[autostyle,italian=guillemets]{csquotes}
 \usepackage[backend=biber]{biblatex}
@@ -11,6 +21,7 @@
 
 % TODO remove in final version
 \usepackage{blindtext}
+\usepackage{todonotes}
 
 \usepackage{pgfgantt}
 
@@ -27,27 +38,32 @@
 \begin{document}
 \maketitle
 
-%TODO write intro
+
 \section*{Introduction}
-A perfect introduction with a nice citation here \cite{Humphreys2018}.
+\todo{Write a real introduction}A perfect introduction here.
 Also \blindtext
 
 
 \tableofcontents
-
+\newpage
 \section{Research goals}
-The goal of my Ph.D. is:\\
-\par
+The goal of my Ph.D. is:\\\\
 \makebox[\textwidth]{\underline{\textsc{Demonstration of quantum applications on a multi-node network.}}}
-
-
-
-%TODO breakdown how to do it
+\todo{Breakdown how to do it}
 
 \section{The NV centre as a quantum network node}
 
 Quantum networks are expected to deliver definitive security for communication, blind quantum computation, improved clock synchronization and more exotic applications such as connecting far apart telescopes \cite{Wehner2018}.
 
+A node of such a network needs to: 1) generate entangled states with other nodes, 2) manipulate quantum states and 3) store quantum states. The \ac{NV} centre in diamond is a promising candidate to act as node of such a network, as it fulfils all the mentioned requirements. Figure~\ref{fig:nv_summary} summarises the fundamental properties of the \ac{NV} centre.
+
+\begin{figure}
+	\missingfigure[figwidth=\textwidth, figheight=0.5\textwidth]{A nice figure to summarise the NV centre properties}
+	\caption{The \ac{NV} centre as a quantum network node. a) The \ac{NV} is an atomic defect in diamond with trapped ion-like properties. b) Spin selective optical transitions allow for high-fidelity initialization and single-shot read-out. c) Neighbouring $C^{13}$ atoms can be used as quantum memories. d) Entanglement can be generated among remote \acp{NV}.}
+	\label{fig:nv_summary}
+\end{figure}
+
+Recent work from our group demonstrated the on-demand generation of remote entanglement between two \ac{NV} centres with rates up to \SI{39}{\Hz} \cite{Humphreys2018}. Such high rates are a consequence of moving from a two-photon detection protocol, such as the one used in Ref.~\cite{Hensen2015}, to a single-photon protocol.
 \section{Genuine remote multipartite entanglement}
 
 \section{Link layer: a proof of concept}
@@ -62,7 +78,7 @@ Quantum networks are expected to deliver definitive security for communication, 
 \subsection{Courses}
 I attended (or I am currently attending) the following courses:
 \begin{itemize}
-	\item Collaboration across disciplines (? GSC) %TODO ask Sandrine!
+	\item Collaboration across disciplines (? GSC) \todo{Ask Sandrine!}
 	\item PhD Start-up (2 GSC)
 	\item Conversation skills (2 GSC)
 	\item Casimir Course - Programming (5 GSC)
@@ -74,33 +90,40 @@ I attended (or I am currently attending) the following courses:
 I have been supervising Hans K. C. Beukers, a MSc student, since February 2018. Hans has been working on setup improvements and techniques that, if successful, will increase the lifetime of our memory qubits.
 
 \subsection{Outreach}
-As an Early Stage Researcher in the MSCA ITN Spin-NANO, I have to carry out outreach activities regarding my research field to the wider audience. I have currently carried out two outreach activities:
+As an \ac{ESR} in the \ac{MSCA} \ac{ITN} Spin-NANO, I have to carry out outreach activities regarding my research field to the wider audience. I have currently carried out two outreach activities:
 \begin{itemize}
-	\item January 2018, Sheffield, UK. Introduction to quantum- and nano-technologies to local high-school students
-	\item September 2018, Brussels, BE. Two days stand about quantum technologies at the European Researchers Night, EU Parlamentarium, mainly to children between 5 and 10.
+	\item January 2018, Sheffield, UK. Introduction to quantum- and nano-technologies to local high-school students, as part of an \ac{ITN} meeting. \todo{1 GSC?}
+	\item September 2018, Brussels, BE. Two days stand about quantum technologies at the European Researchers Night, EU Parlamentarium, mainly to children between 5 and 10. \todo{2 GSC?}
 \end{itemize}
 
 \section{Ph.D. time-line}
+\begin{figure}[htb!]
+	\begin{center}
+		\begin{ganttchart}[
+			hgrid,
+			vgrid,
+			expand chart=\textwidth
+			]{1}{12}
+			\gantttitle{Year 2}{4} \gantttitle{Year 3}{4} \gantttitle{Year 4}{4}\\
+			\ganttbar{3-Node entanglement}{1}{2} \ganttnewline
+			\ganttbar{Link layer demonstration}{3}{5} \ganttnewline
+			\ganttbar[
+			bar/.append style={fill=black!10,pattern=north east lines}
+			]{Support building $4^{th}$ setup}{3}{5} \ganttnewline
+			\ganttbar{Entanglement teleportation}{6}{8} \ganttnewline
+			\ganttbar{Secure delegation}{9}{10} \ganttnewline
+			\ganttbar{Thesis writing}{11}{12}
+		\end{ganttchart}
+	\end{center}
+	\caption{Proposed Ph.D. time-line. \todo[inline]{Write caption. Explain 4th setup.}}
+	\label{fig:phdtimeline}
+\end{figure}
 
-\begin{ganttchart}[
-	hgrid,
-	vgrid,
-	expand chart=\textwidth
-	]{1}{12}
-	\gantttitle{Proposed Ph.D. Time-line}{12}\\
-	\gantttitle{Year 2}{4} \gantttitle{Year 3}{4} \gantttitle{Year 4}{4}\\
-	\ganttbar{3-Node entanglement}{1}{2} \ganttnewline
-	\ganttbar{Link layer demonstration}{3}{5} \ganttnewline
-	\ganttbar{Entanglement teleportation}{6}{7} \ganttnewline
-	\ganttbar{Secure delegation}{8}{9} \ganttnewline
-	\ganttbar{Thesis writing}{10}{12}
-	
-\end{ganttchart}
-
-
+\newpage
 \section*{Acknowledgements}
-%TODO thank everybody
 \addcontentsline{toc}{section}{Acknowledgements}
+\todo{actually thank people}
+I would like to thank everybody.
 
 \printbibliography[heading=bibintoc]
 
