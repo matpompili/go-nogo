@@ -67,7 +67,7 @@ The goal of my Ph.D. is:\\\\
 
 Quantum networks are expected to deliver definitive security for communication, blind quantum computation, improved clock synchronization and more exotic applications such as connecting far apart telescopes \cite{Wehner2018}.
 
-A node of such a network needs to: 1) generate entangled states with other nodes, 2) manipulate quantum states and 3) store quantum states. The \ac{NV} centre in diamond is a promising candidate to act as node of such a network, as it fulfils all the mentioned requirements. Figure~\ref{fig:nv_summary} summarises the fundamental properties of the \ac{NV} centre.
+A node of such a network needs to: 1) generate entangled states with other nodes, 2) manipulate quantum states and 3) store quantum states. The \ac{NV} centre in diamond is a promising candidate to act as node of such a network, as it fulfils all the mentioned requirements. \autoref{fig:nv_summary} summarises the fundamental properties of the \ac{NV} centre.
 
 \begin{figure}
 	\missingfigure[figwidth=\textwidth, figheight=0.5\textwidth]{A nice figure to summarise the NV centre properties. Defect picture, level structure, optical transitions, coherence time, carbon control, entanglement.}
@@ -77,15 +77,16 @@ A node of such a network needs to: 1) generate entangled states with other nodes
 
 Recent work from our group demonstrated the on-demand generation of remote entanglement between two \ac{NV} centres with rates up to \SI{39}{\Hz} \cite{Humphreys2018}. Such high rates, three orders of magnitude higher than previous results on the same platform, are a consequence of moving from a two-photon detection protocol, such as the one used in Ref.~\cite{Hensen2015}, to a single-photon protocol.
 
-Figure~\ref{fig:sce_scheme} summarises the \ac{SCE} protocol. If only a single photon was detected at the end of the protocol, the state of the two \acp{NV} would be $\ket\psi = \ket{\uparrow\downarrow} + e^{i\theta}\ket{\downarrow\uparrow}$, a maximally entangled state, where $\theta$ is the optical phase difference between the two photons. Since our detectors cannot discriminate between one or more incoming photons, the state of two \acp{NV} is actually, in the limit of small detection efficiency, $\rho = (1-\alpha)\ket\psi\bra\psi + \alpha\ket{\uparrow\uparrow}\bra{\uparrow\uparrow}$.
+\autoref{fig:sce_scheme} summarises the \ac{SCE} protocol. If only a single photon was detected at the end of the protocol, the state of the two \acp{NV} would be $\ket\psi = \ket{\uparrow\downarrow} + e^{i\theta}\ket{\downarrow\uparrow}$, a maximally entangled state, where $\theta$ is the optical phase difference between the two photons. Since our detectors cannot discriminate between one or more incoming photons, the state of two \acp{NV} is actually, in the limit of small probability of detection, $\rho = (1-\alpha)\ket\psi\bra\psi + \alpha\ket{\uparrow\uparrow}\bra{\uparrow\uparrow}$.
 
 \begin{figure}
-	\missingfigure[figwidth=\textwidth, figheight=0.3\textwidth]{The SCE protocol}
+	\missingfigure[figwidth=\textwidth, figheight=0.6\textwidth]{The SCE protocol. Also new vs. old comparison}
 	\caption{The \acf{SCE} protocol.
 	a) Two remote \acp{NV} are put in a superposition state $\ket\alpha = \sqrt\alpha\ket\uparrow + \sqrt{1-\alpha^2}\ket\downarrow$ via a \ac{MW} pulse.
 	b) A laser pulse resonant with the $\ket\uparrow$ state, entangles the state of photon with the state of each \ac{NV}.
 	c) The two photonic modes interfere on a \ac{BS}.
-	d) The detection of a single photon heralds the entanglement between the \acp{NV}.}
+	d) The detection of a single photon heralds the entanglement between the \acp{NV}.
+	e) Performance comparison between Ref.~\cite{Humphreys2018} and near-future experiments.}
 	\label{fig:sce_scheme}
 \end{figure}
 
@@ -95,7 +96,7 @@ It is possible further to categorise genuinely entangled states: if it is possib
 
 There are two such categories of triparite genuinely entangled states: the ones that are \ac{SLOOC}-equivalent to the \ac{GHZ} state, $\ket{\text{GHZ}} = (\ket{000} + \ket{111})/\sqrt 2 $, and the ones that can be transformed into the W state, $\ket{\text{W}} = (\ket{001} + \ket{010} + \ket{100})/\sqrt 3 $. While the W state has the interesting feature of maintaining entanglement even if some of the parties are lost, the \ac{GHZ} is usually considered more powerful and most quantum network protocols use a GHZ state as a resource \todo{cite here!}. 
 
-Generation of remote GHZ states have been demonstrated on the photonic platform \cite{Bouwmeester1999}, and local GHZ states have been generated with \ac{NV} centres \todo{Did we?}. Moving beyond two-node experiments requires the generation of remote genuine multipartite entanglement. Figure~\ref{fig:3node_scheme} shows the proposed experimenal sequence to generate a GHZ state among three remote \ac{NV} centres.
+Generation of remote GHZ states have been demonstrated on the photonic platform \cite{Bouwmeester1999}, and local GHZ states have been generated with \ac{NV} centres \todo{Did we?}. Moving beyond two-node experiments requires the generation of remote genuine multipartite entanglement. \autoref{fig:3node_scheme} shows the proposed experimental sequence to generate a GHZ state among three remote \ac{NV} centres.
 
 \begin{figure}
 	\missingfigure[figwidth=\textwidth, figheight=0.6\textwidth]{The 3-node scheme. Experimental sequence, phase stabilisation.}
@@ -106,15 +107,45 @@ Generation of remote GHZ states have been demonstrated on the photonic platform 
 The experiment requires three experimental setups. Two of them, named LT3 and LT4 (Low-Temperature) are the same setups used in Refs.~\cite{Kalb2017, Humphreys2018}.
 I built a new setup, named LT5, which has the same functionalities of the other setups and some upgrades to make it easier to use and more performant. The new setup is in a new laboratory, approximately \SI{20}{m} from the other two setups, which are \SI{1}{m} apart.
 
-\todo[inline]{Comparison of previous and near-future SCE performance}
+
+\todo{Finish comparison}
+In \autoref{fig:sce_scheme}d there is a comparison between the results in Ref.~\cite{Humphreys2018} and estimated entanglement fidelities and rates with near-future experimental parameters (reported in \autoref{tab:sce_params}). 
+
+\begin{table}
+	\begin{center}
+		\begin{tabular}{lcccc}
+			\toprule
+			& $p_\text{det}$ & $\sigma_\theta$ & $p_\text{2exc}$ & $\mathcal V$\\
+			\hline
+			Ref. \cite{Humphreys2018} & \SI{3E-4}{} & \SI{14}{\degree} & 0.04 & 0.80\\ 
+			\hline 
+			Near-future & \SI{1E-3}{} & \SI{20}{\degree} & 0.01 & 0.95\\ 
+			\bottomrule 
+		\end{tabular}
+	\end{center}
+	\caption{Comparison of experimental parameters for \ac{SCE}}
+	\label{tab:sce_params}
+\end{table}
+ 
+After the first round of \ac{SCE} is executed, the state of the central node needs to be saved on a memory qubit. This will be done via a SWAP operation similar to the one used in Ref.~\cite{Kalb2017}.
+A second round of \ac{SCE} will then take place, which will have a timeout, because of the decoherence of the first entangled state. If a second \ac{SCE} is successful within the timeout window, a local controlled gate on the central node will entangle the electron and carbon, therefore generating a 4-qubit entangled state. By measuring the electron of the central node, and feeding back the result to the other node it is possible to generate a GHZ state among the three nodes.
 \todo[inline]{High magnetic field}
 \todo[inline]{Entanglement witness, expected violation map}
 
+
 \section{Link layer: a proof of concept}
+\todo[inline]{Quick ref to network stack}
+\todo[inline]{What do we need to do it}
 
 \section{Entanglement teleportation}
+\todo[inline]{How does the protocol works}
+\todo[inline]{What do we need}
+\todo[inline]{Where is it used}
 
 \section{Client-Server secure delegation}
+\todo[inline]{How does the protocol works}
+\todo[inline]{What do we need}
+\todo[inline]{Where is it used}
 
 \section{Challenges and risks}
 
