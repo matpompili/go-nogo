@@ -24,7 +24,10 @@
 \usepackage{braket}
 
 \usepackage[autostyle,italian=guillemets]{csquotes}
-\usepackage[backend=biber]{biblatex}
+\usepackage[
+	backend=biber,
+	sorting=none
+	]{biblatex}
 
 \addbibresource{db.bib}
 
@@ -90,9 +93,22 @@ Figure~\ref{fig:sce_scheme} summarises the \ac{SCE} protocol. If only a single p
 A two-particle state can either be entangled or separable. When three or more particles are involved in the state, there are more possibilities. The state can be fully separable, where each of the systems can be described independently of the others, partially separable, where some systems are entangled with each other but not all of them are, and genuinely entangled, where none of the systems are separable from each other.
 It is possible further to categorise genuinely entangled states: if it is possible to transform one state into another via \ac{SLOOC}, then we say that the two states are \ac{SLOOC}-equivalent.
 
-There are two such categories of triparite genuinely entangled states: the ones that are \ac{SLOOC}-equivalent to the \ac{GHZ} state, $\ket{\text{GHZ}} = \ket{000} + \ket{111}$, and the ones that can be transformed into the W state, $\ket{\text{W}} = \ket{001} + \ket{010} + \ket{100}$. While the W state has the interesting feature of maintaining entanglement even if one of the parties is lost, the \ac{GHZ} is usually considered more powerful and most quantum network protocols require a GHZ state. 
+There are two such categories of triparite genuinely entangled states: the ones that are \ac{SLOOC}-equivalent to the \ac{GHZ} state, $\ket{\text{GHZ}} = (\ket{000} + \ket{111})/\sqrt 2 $, and the ones that can be transformed into the W state, $\ket{\text{W}} = (\ket{001} + \ket{010} + \ket{100})/\sqrt 3 $. While the W state has the interesting feature of maintaining entanglement even if some of the parties are lost, the \ac{GHZ} is usually considered more powerful and most quantum network protocols use a GHZ state as a resource \todo{cite here!}. 
 
-Generation of remote GHZ states have been demonstrated on the photonic platform \cite{Bouwmeester1999}, and local GHZ states have been generated with \ac{NV} centres. 
+Generation of remote GHZ states have been demonstrated on the photonic platform \cite{Bouwmeester1999}, and local GHZ states have been generated with \ac{NV} centres \todo{Did we?}. Moving beyond two-node experiments requires the generation of remote genuine multipartite entanglement. Figure~\ref{fig:3node_scheme} shows the proposed experimenal sequence to generate a GHZ state among three remote \ac{NV} centres.
+
+\begin{figure}
+	\missingfigure[figwidth=\textwidth, figheight=0.6\textwidth]{The 3-node scheme. Experimental sequence, phase stabilisation.}
+	\caption{Generation of a remote GHZ state with three \ac{NV} centres.}
+	\label{fig:3node_scheme}
+\end{figure}
+
+The experiment requires three experimental setups. Two of them, named LT3 and LT4 (Low-Temperature) are the same setups used in Refs.~\cite{Kalb2017, Humphreys2018}.
+I built a new setup, named LT5, which has the same functionalities of the other setups and some upgrades to make it easier to use and more performant. The new setup is in a new laboratory, approximately \SI{20}{m} from the other two setups, which are \SI{1}{m} apart.
+
+\todo[inline]{Comparison of previous and near-future SCE performance}
+\todo[inline]{High magnetic field}
+\todo[inline]{Entanglement witness, expected violation map}
 
 \section{Link layer: a proof of concept}
 
