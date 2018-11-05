@@ -123,15 +123,23 @@ In \autoref{fig:sce_scheme}d there is a comparison between the results in Ref.~\
 			\bottomrule 
 		\end{tabular}
 	\end{center}
-	\caption{Comparison of experimental parameters for \ac{SCE}}
+	\caption{Comparison of experimental parameters for \ac{SCE}
+	\todo[inline]{Add more parameters}}
 	\label{tab:sce_params}
 \end{table}
  
 After the first round of \ac{SCE} is executed, the state of the central node needs to be saved on a memory qubit. This will be done via a SWAP operation similar to the one used in Ref.~\cite{Kalb2017}.
-A second round of \ac{SCE} will then take place, which will have a timeout, because of the decoherence of the first entangled state. If a second \ac{SCE} is successful within the timeout window, a local controlled gate on the central node will entangle the electron and carbon, therefore generating a 4-qubit entangled state. By measuring the electron of the central node, and feeding back the result to the other node it is possible to generate a GHZ state among the three nodes.
+A second round of \ac{SCE} will then take place, which will have a timeout, because of the decoherence of the first entangled state. If a second \ac{SCE} is successful within the timeout window, a local controlled gate on the central node will entangle the electron and carbon, therefore generating a 4-qubit entangled state. By measuring the electron of the central node, and feeding back the result to the other nodes it is possible to generate a GHZ state among the three nodes.
 \todo[inline]{High magnetic field}
 \todo[inline]{Entanglement witness, expected violation map}
 
+An efficient way to show that a state is entangled is measuring entanglement witnesses \cite{Guehne2009}. An entanglement witness is quantity that is negative when evaluated on a target state, and positive otherwise. For example the quantity $\mathcal W_\text{GHZ} = \mathbb{1}/2 - \ket{\text{GHZ}}\bra{\text{GHZ}}$ is negative on genuine multipartite states (up to a certain noise) and positive for all separable and biseparable states. Measuring a negative value for $\mathcal W_\text{GHZ}$ is therefore a witness of a genuine multipartite entangled state.
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{images/witness.pdf}
+	\caption{Simulation of $\mathcal W_\text{GHZ}$ with near-future experimental parameters}
+	\label{fig:witness}
+\end{figure}
 
 \section{Link layer: a proof of concept}
 \todo[inline]{Quick ref to network stack}
