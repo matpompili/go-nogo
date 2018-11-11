@@ -18,6 +18,8 @@
 \acrodef{BS}{beam-splitter}
 \acrodef{SLOOC}{stochastic local operations and classical communication}
 \acrodef{GHZ}{Greenberger-Horne-Zeilinger}
+\acrodef{AWG}{Arbitrary Waveform Generator}
+\acrodef{QKD}{Quantum Key Distribution}
 % END ACRONYMS
 
 \usepackage{siunitx}
@@ -110,24 +112,22 @@ The experiment requires three experimental setups. Two of them, named LT3 and LT
 I built a new setup, named LT5, which has the same functionalities of the other setups and some upgrades to make it easier to use and more performant. The new setup is in a new laboratory, approximately \SI{20}{m} from the other two setups, which are \SI{1}{m} apart.
 
 
-\todo{Finish comparison}
 In \autoref{fig:sce_scheme}d there is a comparison between the results in Ref.~\cite{Humphreys2018} and estimated entanglement fidelities and rates with near-future experimental parameters (reported in~\autoref{tab:sce_params}). 
 
 \begin{table}
 	\begin{center}
-		\begin{tabular}{lcccc}
+		\begin{tabular}{lcccccc}
 			\toprule
-			& $p_\text{det}$ & $\sigma_\theta$ & $p_\text{2exc}$ & $\mathcal V$\\
+			& $p_\text{det}$ & $\sigma_\theta$ & $p_\text{2exc}$ & $\mathcal V$ & $N_{1/e}$ & $t_\text{ent}$\\
 			\hline
-			Ref. \cite{Humphreys2018} & \SI{3E-4}{} & \SI{14}{\degree} & 0.04 & 0.80\\ 
+			Ref. \cite{Humphreys2018, Kalb2017} & \SI{3E-4}{} & \SI{14}{\degree} & 0.04 & 0.80 & 275 & \SI{5.5}{\micro s}\\ 
 			\hline 
-			Near-future & \SI{1E-3}{} & \SI{20}{\degree} & 0.01 & 0.95\\ 
+			Near-future & \SI{1E-3}{} & \SI{20}{\degree} & 0.02 & 0.9 & 1000 & \SI{3.5}{\micro s}\\ 
 			\bottomrule 
 		\end{tabular}
 	\end{center}
 	\caption{Comparison of experimental parameters for \ac{SCE}}
 	\label{tab:sce_params}
-	\todo[inline]{Add more relevant parameters}
 \end{table}
  
 After the first round of \ac{SCE} is executed, the state of the central node needs to be saved on a memory qubit. This will be done via a SWAP operation similar to the one used in Ref.~\cite{Kalb2017}.
@@ -137,18 +137,39 @@ A second round of \ac{SCE} will then take place, which will have a timeout, beca
 An efficient way to show that a state is entangled is measuring entanglement witnesses \cite{Guehne2009}. An entanglement witness is quantity that is negative when evaluated on a target state, and positive otherwise. For example the quantity $\mathcal W_\text{GHZ} = \mathbb{1}/2 - \ket{\text{GHZ}}\bra{\text{GHZ}}$ is negative on genuine multipartite states (up to a certain noise) and positive for all separable and biseparable states. Measuring a negative value for $\mathcal W_\text{GHZ}$ is therefore a witness of a genuine multipartite entangled state. There are two parameters that we can tweak during the experiments: 1) the timeout for the generation of the second entangled state and 2) the bright state population $\alpha$ for the second round of \ac{SCE}. In \autoref{fig:witness} the expected value of $\mathcal W_\text{GHZ}$ while varying those two parameters. A negative value of the witness (i.e. a fidelity of the generated state $\mathcal{F} > 1/2$) can be obtained with states generated in approximately three minutes.
 
 \begin{figure}
-	\includegraphics[width=\textwidth, trim=1cm 1cm 3cm 1cm 0cm]{images/witness.pdf}
+	\includegraphics[width=\textwidth, trim=1cm 1cm 3cm 1cm 0cm]{../images/witness.pdf}
 	\caption{Simulation of $\mathcal W_\text{GHZ}$ with near-future experimental parameters. The solid lines on the plot represent curves where the witness value is constant. The dashed lines represent the time (in minutes) that it will take to generate such a state.}
 	\label{fig:witness}
 \end{figure}
 
-A Monte-Carlo simulation shows that, with current experimental uncertainties, we would need $\approx 200$ hours of measurement to show that the witness is negative with a statistical significance of $5\sigma$.
+A Monte-Carlo simulation shows that, with near future experimental parameters (\autoref{tab:sce_params}), we would need $\approx 75$ hours of (non-consecutive) measurement to show that the witness is negative with a statistical significance of $5\sigma$.
 
 \section{Link layer: a proof of concept}
-\todo[inline]{Quick ref to network stack}
-\todo[inline]{What do we need to do it}
+
+The Link layer is one of the layers of the network stack, a model that characterizes our current internet without regard to the technological details of the various implementations, and makes it possible to build complex network applications in a device agnostic manner. To build a Quantum Internet it is necessary to develop an analogous stack of layers (\autoref{fig:network_stack}). 
+
+The first layer of the stack is the Physical layer. This includes the quantum network nodes (in our case NV centres) and the physical medium used to connect them (optical fibres). It also includes all the implementation specific instrumentation required to run the setups.
+
+The Link layer is the next layer of the stack. In the Internet it takes care of reliably delivering data between adjacent nodes, without regard to the physical medium used by the nodes (cable, optical fibre, radio etc.).  In the Quantum Internet stack the Link layer will take care of reliably generating entanglement between two points directly connected, eventually through a quantum repeater.
+
+The proposed experiment is a proof of principle of such a layer without the experimental complications that arise when the two nodes are far apart (thus requiring frequency conversion of the photons and/or a quantum repeater).
+Our current multi-node experiments are controlled by a combination of time-deterministic micro-controllers and \acp{AWG}. The code and wave sequences used are highly experiment-specific, and need to be changed manually when a different experiment is required.
+
+The objective of the experiment is to generate entanglement between two nodes using a prototype of the future Link layer.
+An implementation-agnostic microcontroller with a custom operating system (nodeOS) would control each setup, sending commands to a second microcontroller that knows the specific of the system (in our case an NV centre). A schematic of the experiment is depicted in \autoref{fig:link_layer_experiment}.
+
+\begin{figure}
+	\missingfigure[figwidth=\textwidth, figheight=0.4\textwidth]{Link layer experiment scheme. The two NVs, the BS, the ADwins and the AWGs. On top of that the two nodeOS controller, talking to each other.}
+	\caption{Link layer experimental scheme.}
+	\label{fig:link_layer_experiment}
+\end{figure}
+
+The nodeOS controllers will communicate with each other using a direct classical link (an optical fibre, for example), while in the future implementations they would communicate on the Internet. The communication with the Physical link will use a protocol currently in development (\ac{CQC}) that will later be used on a metropolitan scale in the Demonstrator project.
+The Link layer will also be able to execute simple quantum operations on the entangled qubits, allowing to run multiple small-scale quantum applications without the need to reprogram the experimental setups.
 
 \section{Entanglement teleportation}
+Teleportation of quantum states is required by several quantum algorithms \todo{cite here!}. Teleportation of single qubits has been shown on the NV platform by our group \cite{Pfaff2014} and on several other platforms \cite{Takeda2013, Wang2015, Valivarthi2016}.
+With four network nodes it is possible to teleport an entangled state to nodes that are not directly connected, allowing them, for example, to run \ac{QKD}.
 \todo[inline]{How does the protocol works}
 \todo[inline]{What do we need}
 \todo[inline]{Where is it used}
@@ -164,7 +185,7 @@ A Monte-Carlo simulation shows that, with current experimental uncertainties, we
 \subsection{Courses}
 I attended (or I am currently attending) the following courses:
 \begin{itemize}
-	\item Collaboration across disciplines (2 GSC) \todo{Ask Sandrine!}
+	\item Collaboration across disciplines (2 GSC) \todo{certificate from Ronald?}
 	\item PhD Start-up (2 GSC)
 	\item Conversation skills (2 GSC)
 	\item Casimir Course - Programming (5 GSC)
@@ -211,6 +232,18 @@ As an \ac{ESR} in the \ac{MSCA} \ac{ITN} Spin-NANO, I have to carry out outreach
 \todo{actually thank people}
 I would like to thank everybody.
 
+\section*{Appendix}
+\addcontentsline{toc}{section}{Appendix}
+\renewcommand{\thefigure}{A\arabic{figure}}
+\setcounter{figure}{0}
+
+\begin{figure}
+	\includegraphics[width=\textwidth]{images/network_stack.png}
+	\caption{}
+	\label{fig:network_stack}
+\end{figure}
+
 \printbibliography[heading=bibintoc]
+
 
 \end{document}          
