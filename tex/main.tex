@@ -20,10 +20,13 @@
 \acrodef{GHZ}{Greenberger-Horne-Zeilinger}
 \acrodef{AWG}{Arbitrary Waveform Generator}
 \acrodef{QKD}{Quantum Key Distribution}
+\acrodef{RF}{Radio Frequency}
+\acrodef{BQC}{Blind Quantum Computation}
 % END ACRONYMS
 
 \usepackage{siunitx}
 \usepackage{braket}
+\usepackage{pgfgantt}
 
 \usepackage[autostyle,italian=guillemets]{csquotes}
 \usepackage[
@@ -38,7 +41,6 @@
 \usepackage{todonotes}
 \setlength{\marginparwidth}{2cm}
 
-\usepackage{pgfgantt}
 
 
 % Title Page
@@ -64,8 +66,18 @@
 \newpage
 \section{Research goals}
 The goal of my Ph.D. is:\\\\
-\makebox[\textwidth]{\underline{\textsc{Demonstration of quantum applications on a multi-node network.}}}
-\todo{Breakdown the steps}
+\makebox[\textwidth]{\underline{\textsc{Demonstration of quantum applications on a multi-node network.}}}\\\\
+
+To achieve this goal four experiments are proposed: 
+\begin{enumerate}
+	\item Generation of genuine multipartite entangled state,
+	\item Proof of principle demonstration of the Link layer of the future Quantum Internet stack,
+	\item Teleportation of entanglement,
+	\item Client-Server secure delegation of quantum computation.
+\end{enumerate}
+
+Quantum network applications require entangled states to be performed. Experiments 1 and 3 deal with the generation of the necessary entangled states. Experiments 2 and 4 can be considered actual applications, that use the generated entanglement to perform some useful computation or task.
+
 
 \section{The NV centre as a quantum network node}
 
@@ -95,6 +107,7 @@ Recent work from our group demonstrated the on-demand generation of remote entan
 \end{figure}
 
 \section{Genuine remote multipartite entanglement}
+\label{sec:multipartite}
 A two-particle state can either be entangled or separable. When three or more particles are involved in the state, there are more possibilities. The state can be fully separable, where each of the systems can be described independently of the others, partially separable, where some systems are entangled with each other but not all of them are, and genuinely entangled, where none of the systems are separable from each other.
 It is possible further to categorise genuinely entangled states: if it is possible to transform one state into another via \ac{SLOOC}, then we say that the two states are \ac{SLOOC}-equivalent.
 
@@ -109,20 +122,20 @@ Generation of remote GHZ states have been demonstrated on the photonic platform 
 \end{figure}
 
 The experiment requires three experimental setups. Two of them, named LT3 and LT4 (Low-Temperature) are the same setups used in Refs.~\cite{Kalb2017, Humphreys2018}.
-I built a new setup, named LT5, which has the same functionalities of the other setups and some upgrades to make it easier to use and more performant. The new setup is in a new laboratory, approximately \SI{20}{m} from the other two setups, which are \SI{1}{m} apart.
+In the first year of Ph.D. I built a new setup, named LT5, which has the same functionalities of the other setups and some upgrades to make it easier to use and more performant. The new setup is in a new laboratory, approximately \SI{20}{m} from the other two setups, which are \SI{1}{m} apart.
 
 
 In \autoref{fig:sce_scheme}d there is a comparison between the results in Ref.~\cite{Humphreys2018} and estimated entanglement fidelities and rates with near-future experimental parameters (reported in~\autoref{tab:sce_params}). 
 
 \begin{table}
 	\begin{center}
-		\begin{tabular}{lcccccc}
+		\begin{tabular}{lccccccc}
 			\toprule
-			& $p_\text{det}$ & $\sigma_\theta$ & $p_\text{2exc}$ & $\mathcal V$ & $N_{1/e}$ & $t_\text{ent}$\\
+			& $p_\text{det}$ & $\sigma_\theta$ & $p_\text{2exc}$ & $\mathcal V$ & $N_{1/e}$ & $t_\text{ent}$ & B\\
 			\hline
-			Ref. \cite{Humphreys2018, Kalb2017} & \SI{3E-4}{} & \SI{14}{\degree} & 0.04 & 0.80 & 275 & \SI{5.5}{\micro s}\\ 
+			Ref. \cite{Humphreys2018, Kalb2017} & \SI{3E-4}{} & \SI{14}{\degree} & 0.04 & 0.80 & 275 & \SI{5.5}{\micro s} & \SI{400}{G}\\ 
 			\hline 
-			Near-future & \SI{1E-3}{} & \SI{20}{\degree} & 0.02 & 0.9 & 1000 & \SI{3.5}{\micro s}\\ 
+			Near-future & \SI{1E-3}{} & \SI{20}{\degree} & 0.02 & 0.9 & 1000 & \SI{3.5}{\micro s}&\SI{2000}{G}\\ 
 			\bottomrule 
 		\end{tabular}
 	\end{center}
@@ -145,6 +158,7 @@ An efficient way to show that a state is entangled is measuring entanglement wit
 A Monte-Carlo simulation shows that, with near future experimental parameters (\autoref{tab:sce_params}), we would need $\approx 75$ hours of (non-consecutive) measurement to show that the witness is negative with a statistical significance of $5\sigma$.
 
 \section{Link layer: a proof of concept}
+\label{sec:link}
 
 The Link layer is one of the layers of the network stack, a model that characterizes our current internet without regard to the technological details of the various implementations, and makes it possible to build complex network applications in a device agnostic manner. To build a Quantum Internet it is necessary to develop an analogous stack of layers (\autoref{fig:network_stack}). 
 
@@ -164,22 +178,61 @@ An implementation-agnostic microcontroller with a custom operating system (nodeO
 	\label{fig:link_layer_experiment}
 \end{figure}
 
-The nodeOS controllers will communicate with each other using a direct classical link (an optical fibre, for example), while in the future implementations they would communicate on the Internet. The communication with the Physical link will use a protocol currently in development (\ac{CQC}) that will later be used on a metropolitan scale in the Demonstrator project.
-The Link layer will also be able to execute simple quantum operations on the entangled qubits, allowing to run multiple small-scale quantum applications without the need to reprogram the experimental setups.
+The nodeOS controllers will communicate with each other using a direct classical link (an optical fibre, for example), while in the future implementations they would communicate on the Internet. The communication with the Physical link will use a protocol currently in development \todo{Check CQC}(\ac{CQC}) that will later be used on a metropolitan scale in the Demonstrator project.
+The Link layer will also be able to execute simple quantum operations on the entangled qubits, making it possible to run different small-scale quantum applications without the need to reprogram the experimental setups.
+
+\todo[inline]{Discuss about current AWG limitations?}
 
 \section{Entanglement teleportation}
+\label{sec:teleportation}
 Teleportation of quantum states is required by several quantum algorithms \todo{cite here!}. Teleportation of single qubits has been shown on the NV platform by our group \cite{Pfaff2014} and on several other platforms \cite{Takeda2013, Wang2015, Valivarthi2016}.
-With four network nodes it is possible to teleport an entangled state to nodes that are not directly connected, allowing them, for example, to run \ac{QKD}.
-\todo[inline]{How does the protocol works}
-\todo[inline]{What do we need}
-\todo[inline]{Where is it used}
+With four network nodes it is possible to deterministically teleport an entangled state to nodes that are not directly connected, allowing them, for example, to run \ac{QKD}. \autoref{fig:ent_teleport} depicts the experimental scheme. 
+
+\begin{figure}
+	\missingfigure[figwidth=\textwidth, figheight=0.4\textwidth]{Entanglement teleportation experimental scheme.}
+	\caption{Entanglement teleportation experimental scheme. Nodes A and B generate an entangled state with the \ac{SCE} protocol. The state is swapped to the respective memories. A generates entanglement with C, while B generate entanglement with D. A and B perform a joint state measurement and announce their results. C and D share an entangled state. }
+	\label{fig:ent_teleport}
+\end{figure}
+
+A fourth NV node will be built to perform this experiment, and two of the four nodes (A and B) will require a ${}^{13}C$ quantum memory. The same near-future experimental parameters described in \autoref{sec:multipartite} will also allow this experiment to be performed. In particular, the lifetime $N_{1/e}$ of the quantum memories will play an important role: if the lifetime becomes comparable to the required number of entanglement attempts, the protocol could be executed on-demand. A first possibility is to apply an even higher magnetic field (\SI{0.5}{T} or more), which would decrease the effect of \ac{MW} errors by making the pulses closer together (see Ref~\cite{Kalb2017}). A drawback of this approach is the need for vector sources that would need to reach up to \SI{20}{GHz}, and a new cryostat design that could house the needed magnet, and deliver such high frequency signals with acceptable attenuation.
+A second option is to use \ac{RF} pulses to decouple the memory qubit from the environment, which would only require the mixing of \ac{RF} and \ac{MW} signals \cite{Bradley2018}. 
 
 \section{Client-Server secure delegation}
-\todo[inline]{How does the protocol works}
-\todo[inline]{What do we need}
-\todo[inline]{Where is it used}
+\label{sec:delegation}
 
-\section{Challenges and risks}
+One of the key features of quantum networks is \ac{BQC}. A client, without any quantum computation power but the ability to generate single qubit states, interacts with an untrusted quantum server, capable (or not) of universal quantum computation. Quantum mechanics allows for a protocol where the server will execute for the client a computation, without being able to access the client's information, computation or results. The classical analogue is based on the assumption of the server's (or adversary's) limited computational power (just like RSA encryption).
+
+A proof of principle experiment on the photonic platform was realized in 2012 \cite{Barz2012}. The proposed experiment on the NV platform would follow the same experimental scheme, while allowing for an heralded execution.
+
+The client would teleport, one at a time, random quantum states of the form $\ket\theta_j = (\ket 0 + e^{i \theta_j}\ket 1)/\sqrt 2$, with $\theta_j \in \lbrace0, \pi/4,\ldots,7\pi/4\rbrace$. The server, upon receiving the qubits, stores them in quantum memories and applies C-Phase gates to consecutive qubits.
+At this point the client will communicate which measurements to perform (and in which bases). This allows the client to perform universal quantum computation, without sharing private information with the server. The readout bases, and the measurement outcomes, must be combined with the knowledge of the initial states (that only the client has) to obtain information about the computation performed and/or the result.
+
+To perform this experiment on our platform we need to store multiple qubits on the ${}^{13}C$ quantum memories while generating more entanglement. As discussed in \autoref{sec:teleportation}, an increase in the lifetime on the memories is necessary (by at least an order of magnitude with respect to the current value) to be able to run more than one round \ac{SCE} generation. 
+A viable alternative, which is being researched in our group, is the combined use of close-by NV centres. One of the NV centres is used as an optical interface to generate remote entanglement. Once entanglment is established, the state can be swapped to the second NV centre, which has then access to several quantum memories. In this way the memories would not experience the decoherence due to the entanglement generation attempts.
+
+\section{Ph.D. time-line}
+The Gantt Chart with the proposed Ph.D time-line is in \autoref{fig:phdtimeline}.
+\begin{figure}[htb!]
+	\begin{center}
+		\begin{ganttchart}[
+			hgrid,
+			vgrid,
+			expand chart=\textwidth
+			]{1}{12}
+			\gantttitle{Year 2}{4} \gantttitle{Year 3}{4} \gantttitle{Year 4}{4}\\
+			\ganttbar{3-Node entanglement}{1}{2} \ganttnewline
+			\ganttbar{Link layer demonstration}{3}{5} \ganttnewline
+			\ganttbar[
+			bar/.append style={fill=black!10,pattern=north east lines}
+			]{Build $4^\text{th}$ setup}{4}{5} \ganttnewline
+			\ganttbar{Entanglement teleportation}{6}{8} \ganttnewline
+			\ganttbar{Secure delegation}{9}{10} \ganttnewline
+			\ganttbar{Thesis writing}{11}{12}
+		\end{ganttchart}
+	\end{center}
+	\caption{Proposed Ph.D. time-line: \emph{3-Node entanglement} is discussed in \autoref{sec:multipartite}. \emph{Link layer demonstration} in \autoref{sec:link}. \emph{Build $4^\text{th}$ setup} will not be a full time activity, but rather support to another Ph.D. student. \emph{Entanglement teleportation} is discussed in \autoref{sec:teleportation}, and \emph{Secure delegation} in \autoref{sec:delegation}. The last si months will be used to write the Thesis.}
+	\label{fig:phdtimeline}
+\end{figure}
 
 \section{Graduate school progress}
 \subsection{Courses}
@@ -194,7 +247,7 @@ I attended (or I am currently attending) the following courses:
 \end{itemize}
 
 \subsection{Supervision}
-I have been supervising Hans K. C. Beukers, a MSc student, since February 2018. Hans has been working on setup improvements and techniques that, if successful, will increase the lifetime of our memory qubits.
+I have been supervising Hans K. C. Beukers, a MSc student, since February 2018. Hans has been working on setup improvements and techniques that, if successful, will increase the lifetime of our memory qubits. He will graduate in February 2019.
 
 \subsection{Outreach}
 As an \ac{ESR} in the \ac{MSCA} \ac{ITN} Spin-NANO, I have to carry out outreach activities regarding my research field to the wider audience. I have currently carried out two outreach activities:
@@ -203,30 +256,6 @@ As an \ac{ESR} in the \ac{MSCA} \ac{ITN} Spin-NANO, I have to carry out outreach
 	\item September 2018, Brussels, BE. Two days stand about quantum technologies at the European Researchers Night, EU Parlamentarium, mainly to children between 5 and 10. \todo{2 GSC?}
 \end{itemize}
 
-\section{Ph.D. time-line}
-\begin{figure}[htb!]
-	\begin{center}
-		\begin{ganttchart}[
-			hgrid,
-			vgrid,
-			expand chart=\textwidth
-			]{1}{12}
-			\gantttitle{Year 2}{4} \gantttitle{Year 3}{4} \gantttitle{Year 4}{4}\\
-			\ganttbar{3-Node entanglement}{1}{2} \ganttnewline
-			\ganttbar{Link layer demonstration}{3}{5} \ganttnewline
-			\ganttbar[
-			bar/.append style={fill=black!10,pattern=north east lines}
-			]{Help building $4^\text{th}$ setup}{4}{5} \ganttnewline
-			\ganttbar{Entanglement teleportation}{6}{8} \ganttnewline
-			\ganttbar{Secure delegation}{9}{10} \ganttnewline
-			\ganttbar{Thesis writing}{11}{12}
-		\end{ganttchart}
-	\end{center}
-	\caption{Proposed Ph.D. time-line. \todo[inline]{Write caption. Explain 4th setup.}}
-	\label{fig:phdtimeline}
-\end{figure}
-
-\newpage
 \section*{Acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
 \todo{actually thank people}
@@ -237,13 +266,13 @@ I would like to thank everybody.
 \renewcommand{\thefigure}{A\arabic{figure}}
 \setcounter{figure}{0}
 
-\begin{figure}
+\begin{figure}[h!]
 	\includegraphics[width=\textwidth]{images/network_stack.png}
-	\caption{}
+	\caption{\todo[inline]{Some description here?}}
 	\label{fig:network_stack}
 \end{figure}
 
+\newpage
 \printbibliography[heading=bibintoc]
-
-
+\todo[inline]{Check with Conor}
 \end{document}          
