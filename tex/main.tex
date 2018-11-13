@@ -1,10 +1,11 @@
 % !TeX spellcheck = en_GB
 \documentclass[a4paper, twoside]{article}
-\usepackage[british, UKenglish, english]{babel}
-\usepackage[
-	drafting, %TODO remove drafting
-	eulermath
-	]{classicthesis}
+%\usepackage[british, UKenglish]{babel}
+\input{classicthesis-config}
+%\usepackage[
+%	drafting, %TODO remove drafting
+%	eulermath
+%	]{classicthesis}
 \usepackage{geometry}
 \geometry{lmargin=3cm,rmargin=3cm,bmargin=3cm,tmargin=3cm}
 % ACRONYMS
@@ -22,17 +23,20 @@
 \acrodef{QKD}{Quantum Key Distribution}
 \acrodef{RF}{Radio Frequency}
 \acrodef{BQC}{Blind Quantum Computation}
+\acrodef{DD}{Dynamical Decoupling}
+\acrodef{ZPL}{Zero Phonon Line}
+\acrodef{TPQI}{Two-photon Quantum Interference}
 % END ACRONYMS
 
 \usepackage{siunitx}
 \usepackage{braket}
 \usepackage{pgfgantt}
 
-\usepackage[autostyle,italian=guillemets]{csquotes}
-\usepackage[
-	backend=biber,
-	sorting=none
-	]{biblatex}
+%\usepackage[autostyle,italian=guillemets]{csquotes}
+%\usepackage[
+%	backend=biber,
+%	sorting=none
+%	]{biblatex}
 
 \addbibresource{db.bib}
 
@@ -64,6 +68,7 @@
 \tableofcontents
 
 \newpage
+\pagestyle{plain}
 \section{Research goals}
 The goal of my Ph.D. is:\\\\
 \makebox[\textwidth]{\underline{\textsc{Demonstration of quantum applications on a multi-node network.}}}\\\\
@@ -109,11 +114,13 @@ Recent work from our group demonstrated the on-demand generation of remote entan
 \section{Genuine remote multipartite entanglement}
 \label{sec:multipartite}
 A two-particle state can either be entangled or separable. When three or more particles are involved in the state, there are more possibilities. The state can be fully separable, where each of the systems can be described independently of the others, partially separable, where some systems are entangled with each other but not all of them are, and genuinely entangled, where none of the systems are separable from each other.
-It is possible further to categorise genuinely entangled states: if it is possible to transform one state into another via \ac{SLOOC}, then we say that the two states are \ac{SLOOC}-equivalent.
+It is possible to further categorise genuinely entangled states: if it is possible to transform one state into another via \ac{SLOOC}, then we say that the two states are \ac{SLOOC}-equivalent.
 
-There are two such categories of triparite genuinely entangled states: the ones that are \ac{SLOOC}-equivalent to the \ac{GHZ} state, $\ket{\text{GHZ}} = (\ket{000} + \ket{111})/\sqrt 2 $, and the ones that can be transformed into the W state, $\ket{\text{W}} = (\ket{001} + \ket{010} + \ket{100})/\sqrt 3 $. While the W state has the interesting feature of maintaining entanglement even if some of the parties are lost, the \ac{GHZ} is usually considered more powerful and most quantum network protocols use a GHZ state as a resource \todo{cite here!}. 
+There are then two categories of triparite genuinely entangled states: the ones that are \ac{SLOOC}-equivalent to the \ac{GHZ} state, $\ket{\text{GHZ}} = (\ket{000} + \ket{111})/\sqrt 2 $, and the ones that can be transformed into the W state, $\ket{\text{W}} = (\ket{001} + \ket{010} + \ket{100})/\sqrt 3 $. While the W state has the interesting feature of maintaining entanglement even if some of the parties are lost, the \ac{GHZ} is usually considered more powerful and most quantum network protocols use a GHZ state as a resource \todo{cite here!}. 
 
-Generation of remote GHZ states have been demonstrated on the photonic platform \cite{Bouwmeester1999}, and local GHZ states have been generated with \ac{NV} centres \todo{Did we?}. Moving beyond two-node experiments requires the generation of remote genuine multipartite entanglement. \autoref{fig:3node_scheme} shows the proposed experimental sequence to generate a GHZ state among three remote \ac{NV} centres.
+\subsection{State generation}
+
+Generation of remote GHZ states have been demonstrated on the photonic platform \cite{Bouwmeester1999}, and local GHZ states have been generated with \ac{NV} centres \todo{Did we publish it? There is definitely a GHZ folder in the drive}. Moving beyond two-node experiments requires the generation of remote genuine multipartite entanglement. \autoref{fig:3node_scheme} shows the proposed experimental sequence to generate a GHZ state among three remote \ac{NV} centres.
 
 \begin{figure}
 	\missingfigure[figwidth=\textwidth, figheight=0.6\textwidth]{The 3-node scheme. Experimental sequence, phase stabilisation.}
@@ -122,7 +129,7 @@ Generation of remote GHZ states have been demonstrated on the photonic platform 
 \end{figure}
 
 The experiment requires three experimental setups. Two of them, named LT3 and LT4 (Low-Temperature) are the same setups used in Refs.~\cite{Kalb2017, Humphreys2018}.
-In the first year of Ph.D. I built a new setup, named LT5, which has the same functionalities of the other setups and some upgrades to make it easier to use and more performant. The new setup is in a new laboratory, approximately \SI{20}{m} from the other two setups, which are \SI{1}{m} apart.
+In the first year of my Ph.D. I built a new setup, named LT5, which has the same functionalities of the other setups and some upgrades to make it easier to use and more performant. The new setup is in a new laboratory, approximately \SI{20}{m} from the other two setups, which are \SI{1}{m} apart.
 
 
 In \autoref{fig:sce_scheme}d there is a comparison between the results in Ref.~\cite{Humphreys2018} and estimated entanglement fidelities and rates with near-future experimental parameters (reported in~\autoref{tab:sce_params}). 
@@ -131,21 +138,24 @@ In \autoref{fig:sce_scheme}d there is a comparison between the results in Ref.~\
 	\begin{center}
 		\begin{tabular}{lccccccc}
 			\toprule
-			& $p_\text{det}$ & $\sigma_\theta$ & $p_\text{2exc}$ & $\mathcal V$ & $N_{1/e}$ & $t_\text{ent}$ & B\\
+			& $p_\text{det}$ & $\sigma_\theta$ & $p_\text{2exc}$ & $\mathcal V$ & $N_{1/e}$ & $t_\text{ent}$ & $B_z$\\
 			\hline
 			Ref. \cite{Humphreys2018, Kalb2017} & \SI{3E-4}{} & \SI{14}{\degree} & 0.04 & 0.80 & 275 & \SI{5.5}{\micro s} & \SI{400}{G}\\ 
 			\hline 
-			Near-future & \SI{1E-3}{} & \SI{20}{\degree} & 0.02 & 0.9 & 1000 & \SI{3.5}{\micro s}&\SI{2000}{G}\\ 
+			Near-future & \SI{1E-3}{} & \SI{20}{\degree} & 0.02 & 0.90 & 1000 & \SI{3.5}{\micro s}&\SI{2000}{G}\\ 
 			\bottomrule 
 		\end{tabular}
 	\end{center}
-	\caption{Comparison of experimental parameters for \ac{SCE}}
+	\caption{Comparison of experimental parameters for \ac{SCE}. $p_\text{det}$ is the probability of detecting a photon in the \ac{ZPL}. $\sigma_\theta$ is the phase uncertainty of the stabilised interferometer. $p_\text{2exc}$ is the probability that the \ac{NV} had already been excited during the pulse if a photon is detected after the pulse. $\mathcal V$ is the visibility of the \ac{TPQI}. $N_{1/e}$ is the lifetime of the quantum memory (see main text). $t_\text{ent}$ is the duration of one entanglement attempt. $B_z$ is the external magnetic field applied to the \ac{NV}.}
 	\label{tab:sce_params}
 \end{table}
  
 After the first round of \ac{SCE} is executed, the state of the central node needs to be saved on a memory qubit. This will be done via a SWAP operation similar to the one used in Ref.~\cite{Kalb2017}.
 A second round of \ac{SCE} will then take place, which will have a timeout, because of the decoherence of the first entangled state. If a second \ac{SCE} is successful within the timeout window, a local controlled gate on the central node will entangle the electron and carbon, therefore generating a 4-qubit entangled state. By measuring the electron of the central node, and feeding back the result to the other nodes it is possible to generate a GHZ state among the three nodes.
-\todo[inline]{High magnetic field}
+
+It is fundamental, for the success of the protocol, to be able to preserve the first entangled state while the second is being generated. While the state of the electronic spin of node A will be preserved using \ac{DD} sequences, and can reach up to \SI{1}{s} of coherence time \cite{Abobeih2018}, the nuclear spin on node B will be affected by attempts to generate entanglement on the electronic spin. The main cause of this decoherence are errors in the \ac{MW} pulses used in the entanglement generation sequence \cite{Kalb2018}. These errors limited the \emph{lifetime}\footnote{Here \emph{lifetime} does not directly refer to a time, but rather to the number of entanglement attempts necessary to decrease the length of the Bloch vector to $1/e$ of the original value.} $N_{1/e}$ of the quantum memory to $\approx 275$ entanglement attempt \cite{Kalb2017}. As proposed in Ref.~\cite{Kalb2018}, an avenue to increase the resilience of the quantum memory to the network activity is to increase the extranal magnetic field applied to the sample. This will make it possible to run the \ac{MW} pulses in the entanglement generation closer together, therefore reducing the effect of their errors on the quantum memory. We have updated one of the setups (LT3) to run with a higher magnetic field of \SI{2000}{G} (instead of \SI{2000}{G}). This should directly improve $N_{1/e}$ to $\approx 1000$.
+
+\subsection{State characterisation}
 
 An efficient way to show that a state is entangled is measuring entanglement witnesses \cite{Guehne2009}. An entanglement witness is quantity that is negative when evaluated on a target state, and positive otherwise. For example the quantity $\mathcal W_\text{GHZ} = \mathbb{1}/2 - \ket{\text{GHZ}}\bra{\text{GHZ}}$ is negative on genuine multipartite states (up to a certain noise) and positive for all separable and biseparable states. Measuring a negative value for $\mathcal W_\text{GHZ}$ is therefore a witness of a genuine multipartite entangled state. There are two parameters that we can tweak during the experiments: 1) the timeout for the generation of the second entangled state and 2) the bright state population $\alpha$ for the second round of \ac{SCE}. In \autoref{fig:witness} the expected value of $\mathcal W_\text{GHZ}$ while varying those two parameters. A negative value of the witness (i.e. a fidelity of the generated state $\mathcal{F} > 1/2$) can be obtained with states generated in approximately three minutes.
 
@@ -155,7 +165,7 @@ An efficient way to show that a state is entangled is measuring entanglement wit
 	\label{fig:witness}
 \end{figure}
 
-A Monte-Carlo simulation shows that, with near future experimental parameters (\autoref{tab:sce_params}), we would need $\approx 75$ hours of (non-consecutive) measurement to show that the witness is negative with a statistical significance of $5\sigma$.
+A Monte-Carlo simulation shows that, with near future experimental parameters (\autoref{tab:sce_params}), we would need $\approx 30$ hours of (non-consecutive) measurement to show that the witness is negative with a statistical significance of $3\sigma$, and $\approx 70$ hours for a $5\sigma$ significance.
 
 \section{Link layer: a proof of concept}
 \label{sec:link}
@@ -195,7 +205,7 @@ With four network nodes it is possible to deterministically teleport an entangle
 \end{figure}
 
 A fourth NV node will be built to perform this experiment, and two of the four nodes (A and B) will require a ${}^{13}C$ quantum memory. The same near-future experimental parameters described in \autoref{sec:multipartite} will also allow this experiment to be performed. In particular, the lifetime $N_{1/e}$ of the quantum memories will play an important role: if the lifetime becomes comparable to the required number of entanglement attempts, the protocol could be executed on-demand. A first possibility is to apply an even higher magnetic field (\SI{0.5}{T} or more), which would decrease the effect of \ac{MW} errors by making the pulses closer together (see Ref~\cite{Kalb2017}). A drawback of this approach is the need for vector sources that would need to reach up to \SI{20}{GHz}, and a new cryostat design that could house the needed magnet, and deliver such high frequency signals with acceptable attenuation.
-A second option is to use \ac{RF} pulses to decouple the memory qubit from the environment, which would only require the mixing of \ac{RF} and \ac{MW} signals \cite{Bradley2018}. 
+A second option is to use \ac{RF} pulses to decouple the memory qubit from the environment, which would only require the additional mixing of \ac{RF} and \ac{MW} signals with respect to the current setup \cite{Bradley2018}. 
 
 \section{Client-Server secure delegation}
 \label{sec:delegation}
@@ -230,7 +240,7 @@ The Gantt Chart with the proposed Ph.D time-line is in \autoref{fig:phdtimeline}
 			\ganttbar{Thesis writing}{11}{12}
 		\end{ganttchart}
 	\end{center}
-	\caption{Proposed Ph.D. time-line: \emph{3-Node entanglement} is discussed in \autoref{sec:multipartite}. \emph{Link layer demonstration} in \autoref{sec:link}. \emph{Build $4^\text{th}$ setup} will not be a full time activity, but rather support to another Ph.D. student. \emph{Entanglement teleportation} is discussed in \autoref{sec:teleportation}, and \emph{Secure delegation} in \autoref{sec:delegation}. The last si months will be used to write the Thesis.}
+	\caption{Proposed Ph.D. time-line: \emph{3-Node entanglement} is discussed in \autoref{sec:multipartite}. \emph{Link layer demonstration} in \autoref{sec:link}. \emph{Build $4^\text{th}$ setup} will not be a full time activity, but rather support to another Ph.D. student. \emph{Entanglement teleportation} is discussed in \autoref{sec:teleportation}, and \emph{Secure delegation} in \autoref{sec:delegation}. The last six months will be used to write the Thesis.}
 	\label{fig:phdtimeline}
 \end{figure}
 
