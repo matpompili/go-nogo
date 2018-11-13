@@ -71,11 +71,11 @@
 \pagestyle{plain}
 \section{Research goals}
 The goal of my Ph.D. is:\\\\
-\makebox[\textwidth]{\underline{\textsc{Demonstration of quantum applications on a multi-node network.}}}\\\\
+\makebox[\textwidth]{\underline{\textsc{Demonstration of quantum applications on a multi-node network}}}\\\\
 
 To achieve this goal four experiments are proposed: 
 \begin{enumerate}
-	\item Generation of genuine multipartite entangled state,
+	\item Generation of genuine multipartite entangled states,
 	\item Proof of principle demonstration of the Link layer of the future Quantum Internet stack,
 	\item Teleportation of entanglement,
 	\item Client-Server secure delegation of quantum computation.
@@ -88,7 +88,7 @@ Quantum network applications require entangled states to be performed. Experimen
 
 Quantum networks are expected to deliver definitive security for communication, blind quantum computation, improved clock synchronization and more exotic applications such as connecting far apart telescopes \cite{Wehner2018}.
 
-A node of such a network needs to: 1) generate entangled states with other nodes, 2) manipulate quantum states and 3) store quantum states. The \ac{NV} centre in diamond is a promising candidate to act as node of such a network, as it fulfils all the mentioned requirements. \autoref{fig:nv_summary} summarises the fundamental properties of the \ac{NV} centre.
+A node of such a network needs to: 1) generate entangled states with other nodes, 2) manipulate quantum states and 3) store quantum states. The \ac{NV} centre in diamond is a promising candidate to act as node of such a network, as it fulfils all the mentioned requirements \cite{Awschalom2018}. \autoref{fig:nv_summary} summarises the fundamental properties of the \ac{NV} centre.
 
 \begin{figure}
 	\missingfigure[figwidth=\textwidth, figheight=0.8\textwidth]{A nice figure to summarise the NV centre properties. Defect picture, level structure, optical transitions, coherence time, carbon control, entanglement.}
@@ -99,6 +99,7 @@ A node of such a network needs to: 1) generate entangled states with other nodes
 Recent work from our group demonstrated the on-demand generation of remote entanglement between two \ac{NV} centres with rates up to \SI{39}{\Hz} \cite{Humphreys2018}. Such high rates, three orders of magnitude higher than previous results on the same platform, are a consequence of moving from a two-photon detection protocol, such as the one used in Ref.~\cite{Hensen2015}, to a single-photon protocol.
 
 \autoref{fig:sce_scheme} summarises the \ac{SCE} protocol. If only a single photon was detected at the end of the protocol, the state of the two \acp{NV} would be $\ket\psi = \ket{\uparrow\downarrow} + e^{i\theta}\ket{\downarrow\uparrow}$, a maximally entangled state, where $\theta$ is the optical phase difference between the two photons. Since our detectors cannot discriminate between one or more incoming photons, the state of two \acp{NV} is actually, in the limit of small probability of detection, $\rho = (1-\alpha)\ket\psi\bra\psi + \alpha\ket{\uparrow\uparrow}\bra{\uparrow\uparrow}$.
+\todo[inline]{Do I actually want to write this stuff here?}
 
 \begin{figure}
 	\missingfigure[figwidth=\textwidth, figheight=0.6\textwidth]{The SCE protocol. Also new vs. old comparison}
@@ -153,11 +154,11 @@ In \autoref{fig:sce_scheme}d there is a comparison between the results in Ref.~\
 After the first round of \ac{SCE} is executed, the state of the central node needs to be saved on a memory qubit. This will be done via a SWAP operation similar to the one used in Ref.~\cite{Kalb2017}.
 A second round of \ac{SCE} will then take place, which will have a timeout, because of the decoherence of the first entangled state. If a second \ac{SCE} is successful within the timeout window, a local controlled gate on the central node will entangle the electron and carbon, therefore generating a 4-qubit entangled state. By measuring the electron of the central node, and feeding back the result to the other nodes it is possible to generate a GHZ state among the three nodes.
 
-It is fundamental, for the success of the protocol, to be able to preserve the first entangled state while the second is being generated. While the state of the electronic spin of node A will be preserved using \ac{DD} sequences, and can reach up to \SI{1}{s} of coherence time \cite{Abobeih2018}, the nuclear spin on node B will be affected by attempts to generate entanglement on the electronic spin. The main cause of this decoherence are errors in the \ac{MW} pulses used in the entanglement generation sequence \cite{Kalb2018}. These errors limited the \emph{lifetime}\footnote{Here \emph{lifetime} does not directly refer to a time, but rather to the number of entanglement attempts necessary to decrease the length of the Bloch vector to $1/e$ of the original value.} $N_{1/e}$ of the quantum memory to $\approx 275$ entanglement attempt \cite{Kalb2017}. As proposed in Ref.~\cite{Kalb2018}, an avenue to increase the resilience of the quantum memory to the network activity is to increase the extranal magnetic field applied to the sample. This will make it possible to run the \ac{MW} pulses in the entanglement generation closer together, therefore reducing the effect of their errors on the quantum memory. We have updated one of the setups (LT3) to run with a higher magnetic field of \SI{2000}{G} (instead of \SI{2000}{G}). This should directly improve $N_{1/e}$ to $\approx 1000$.
+It is fundamental, for the success of the protocol, to be able to preserve the first entangled state while the second is being generated. While the state of the electronic spin of node A will be preserved using \ac{DD} sequences, and can reach up to \SI{1}{s} of coherence time \cite{Abobeih2018}, the nuclear spin on node B will be affected by the attempts to generate entanglement on the electronic spin. The main cause of this decoherence are errors in the \ac{MW} pulses used in the entanglement generation sequence \cite{Kalb2018}. These errors limited the \emph{lifetime}\footnote{Here \emph{lifetime} does not directly refer to a time, but rather to the number of entanglement attempts necessary to decrease the length of the Bloch vector to $1/e$ of the original value.} $N_{1/e}$ of the quantum memory to $\approx 275$ entanglement attempt in past works \cite{Kalb2017}. As proposed in Ref.~\cite{Kalb2018}, an avenue to increase the resilience of the quantum memory to the network activity is to increase the external magnetic field applied to the sample. This will make it possible to run the \ac{MW} pulses in the entanglement generation closer together, therefore reducing the effect of their errors on the quantum memory. We have updated one of the setups (LT3) to run with a higher magnetic field of \SI{2000}{G} (instead of \SI{400}{G}). This should directly improve $N_{1/e}$ to $\approx 1000$.
 
 \subsection{State characterisation}
 
-An efficient way to show that a state is entangled is measuring entanglement witnesses \cite{Guehne2009}. An entanglement witness is quantity that is negative when evaluated on a target state, and positive otherwise. For example the quantity $\mathcal W_\text{GHZ} = \mathbb{1}/2 - \ket{\text{GHZ}}\bra{\text{GHZ}}$ is negative on genuine multipartite states (up to a certain noise) and positive for all separable and biseparable states. Measuring a negative value for $\mathcal W_\text{GHZ}$ is therefore a witness of a genuine multipartite entangled state. There are two parameters that we can tweak during the experiments: 1) the timeout for the generation of the second entangled state and 2) the bright state population $\alpha$ for the second round of \ac{SCE}. In \autoref{fig:witness} the expected value of $\mathcal W_\text{GHZ}$ while varying those two parameters. A negative value of the witness (i.e. a fidelity of the generated state $\mathcal{F} > 1/2$) can be obtained with states generated in approximately three minutes.
+An efficient way to show that a state is entangled is measuring entanglement witnesses \cite{Guehne2009}. An entanglement witness is quantity that is negative when evaluated on a target state, and positive otherwise. For example the quantity $\mathcal W_\text{GHZ} = \mathbb{1}/2 - \ket{\text{GHZ}}\bra{\text{GHZ}}$ is negative on genuine multipartite states (up to a certain noise) and positive for all separable and biseparable states. Measuring a negative value for $\mathcal W_\text{GHZ}$ is therefore a witness of a genuine multipartite entangled state. There are two parameters that we can tweak during the experiments: 1) the timeout for the generation of the second entangled state and 2) the bright state population $\alpha$ for the second round of \ac{SCE}. In \autoref{fig:witness} the expected value of $\mathcal W_\text{GHZ}$ while varying those two parameters. A negative value of the witness (i.e. a fidelity of the generated state $\mathcal{F} > 1/2$) can be obtained with states generated in approximately one minute.
 
 \begin{figure}
 	\includegraphics[width=\textwidth, trim=1cm 1cm 3cm 1cm 0cm]{../images/witness.pdf}
@@ -170,9 +171,9 @@ A Monte-Carlo simulation shows that, with near future experimental parameters (\
 \section{Link layer: a proof of concept}
 \label{sec:link}
 
-The Link layer is one of the layers of the network stack, a model that characterizes our current internet without regard to the technological details of the various implementations, and makes it possible to build complex network applications in a device agnostic manner. To build a Quantum Internet it is necessary to develop an analogous stack of layers (\autoref{fig:network_stack}). 
+The Link layer is one of the layers of the network stack, a model that characterizes our current Internet without regard to the technological details of the various implementations, and makes it possible to build complex network applications in a device-agnostic manner. To build a Quantum Internet it is necessary to develop an analogous stack of layers (Figure~\ref{fig:network_stack}). 
 
-The first layer of the stack is the Physical layer. This includes the quantum network nodes (in our case NV centres) and the physical medium used to connect them (optical fibres). It also includes all the implementation specific instrumentation required to run the setups.
+The first layer of the stack is the Physical layer. This includes the quantum network nodes (in our case \ac{NV} centres) and the physical medium used to connect them (optical fibres). It also includes all the implementation specific instrumentation required to run the setups.
 
 The Link layer is the next layer of the stack. In the Internet it takes care of reliably delivering data between adjacent nodes, without regard to the physical medium used by the nodes (cable, optical fibre, radio etc.).  In the Quantum Internet stack the Link layer will take care of reliably generating entanglement between two points directly connected, eventually through a quantum repeater.
 
@@ -189,7 +190,7 @@ An implementation-agnostic microcontroller with a custom operating system (nodeO
 \end{figure}
 
 The nodeOS controllers will communicate with each other using a direct classical link (an optical fibre, for example), while in the future implementations they would communicate on the Internet. The communication with the Physical link will use a protocol currently in development \todo{Check CQC}(\ac{CQC}) that will later be used on a metropolitan scale in the Demonstrator project.
-The Link layer will also be able to execute simple quantum operations on the entangled qubits, making it possible to run different small-scale quantum applications without the need to reprogram the experimental setups.
+The Link layer will also be able to execute simple quantum operations on the entangled qubits, making it possible to run different small-scale quantum programs without the need to reprogram the experimental setups.
 
 \todo[inline]{Discuss about current AWG limitations?}
 
@@ -204,7 +205,7 @@ With four network nodes it is possible to deterministically teleport an entangle
 	\label{fig:ent_teleport}
 \end{figure}
 
-A fourth NV node will be built to perform this experiment, and two of the four nodes (A and B) will require a ${}^{13}C$ quantum memory. The same near-future experimental parameters described in \autoref{sec:multipartite} will also allow this experiment to be performed. In particular, the lifetime $N_{1/e}$ of the quantum memories will play an important role: if the lifetime becomes comparable to the required number of entanglement attempts, the protocol could be executed on-demand. A first possibility is to apply an even higher magnetic field (\SI{0.5}{T} or more), which would decrease the effect of \ac{MW} errors by making the pulses closer together (see Ref~\cite{Kalb2017}). A drawback of this approach is the need for vector sources that would need to reach up to \SI{20}{GHz}, and a new cryostat design that could house the needed magnet, and deliver such high frequency signals with acceptable attenuation.
+A fourth NV node will be built to perform this experiment, and two of the four nodes (A and B) will require a ${}^{13}C$ quantum memory. The same near-future experimental parameters described in \autoref{sec:multipartite} will also allow this experiment to be performed. In particular, the lifetime $N_{1/e}$ of the quantum memories will play an important role: if the lifetime becomes comparable to the required number of entanglement attempts, the protocol could be executed on-demand. A first possibility is to apply an even higher magnetic field (\SI{0.5}{T} or more), which would decrease the effect of \ac{MW} errors by making the pulses closer together (see Ref~\cite{Kalb2017}). A drawback of this approach is the need for vector sources that would need to reach up to \SI{20}{GHz}, and a new cryostat design that could house the needed magnet and deliver such high frequency signals with acceptable attenuation.
 A second option is to use \ac{RF} pulses to decouple the memory qubit from the environment, which would only require the additional mixing of \ac{RF} and \ac{MW} signals with respect to the current setup \cite{Bradley2018}. 
 
 \section{Client-Server secure delegation}
@@ -278,7 +279,7 @@ I would like to thank everybody.
 
 \begin{figure}[h!]
 	\includegraphics[width=\textwidth]{images/network_stack.png}
-	\caption{\todo[inline]{Some description here?}}
+	\caption{Proposed Quantum Internet stack\todo[inline]{Some description here? Can I even put it here? Need to cite the proposal. }}
 	\label{fig:network_stack}
 \end{figure}
 
