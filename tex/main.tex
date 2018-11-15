@@ -7,7 +7,7 @@
 %	eulermath
 %	]{classicthesis}
 \usepackage{geometry}
-\geometry{lmargin=3cm,rmargin=3cm,bmargin=3cm,tmargin=3cm}
+\geometry{lmargin=2.5cm,rmargin=2.5cm,bmargin=2.5cm,tmargin=2.5cm}
 % ACRONYMS
 \usepackage[printonlyused]{acronym}
 \acrodef{NV}{Nitrogen-Vacancy}
@@ -43,7 +43,7 @@
 % TODO remove in final version
 \usepackage{blindtext}
 \usepackage{todonotes}
-\setlength{\marginparwidth}{2cm}
+\setlength{\marginparwidth}{1.5cm}
 
 
 
@@ -91,7 +91,8 @@ Quantum networks are expected to deliver definitive security for communication, 
 A node of such a network needs to: 1) generate entangled states with other nodes, 2) manipulate quantum states and 3) store quantum states. The \ac{NV} centre in diamond is a promising candidate to act as node of such a network, as it fulfils all the mentioned requirements \cite{Awschalom2018}. \autoref{fig:nv_summary} summarises the fundamental properties of the \ac{NV} centre.
 
 \begin{figure}
-	\missingfigure[figwidth=\textwidth, figheight=0.8\textwidth]{A nice figure to summarise the NV centre properties. Defect picture, level structure, optical transitions, coherence time, carbon control, entanglement.}
+%	\missingfigure[figwidth=\textwidth, figheight=0.8\textwidth]{A nice figure to summarise the NV centre properties. Defect picture, level structure, optical transitions, coherence time, carbon control, entanglement.}
+	\includegraphics[width=\textwidth]{images/figure1}
 	\caption{The \ac{NV} centre as a quantum network node. a) The \ac{NV} is an atomic defect in diamond with trapped ion-like properties. b) Spin selective optical transitions allow for high-fidelity initialization and single-shot read-out. c) Neighbouring $C^{13}$ atoms can be used as quantum memories. d) Entanglement can be generated among remote \acp{NV}.}
 	\label{fig:nv_summary}
 \end{figure}
@@ -102,13 +103,14 @@ Recent work from our group demonstrated the on-demand generation of remote entan
 \todo[inline]{Do I actually want to write this stuff here?}
 
 \begin{figure}
-	\missingfigure[figwidth=\textwidth, figheight=0.6\textwidth]{The SCE protocol. Also new vs. old comparison}
+%	\missingfigure[figwidth=\textwidth, figheight=0.6\textwidth]{The SCE protocol. Also new vs. old comparison}
+	\includegraphics[width=\textwidth]{images/figure2}
 	\caption{The \acf{SCE} protocol.
 	a) Two remote \acp{NV} are put in a superposition state $\ket\alpha = \sqrt\alpha\ket\uparrow + \sqrt{1-\alpha^2}\ket\downarrow$ via a \ac{MW} pulse.
-	b) A laser pulse resonant with the $\ket\uparrow$ state, entangles the state of photon with the state of each \ac{NV}.
-	c) The two photonic modes interfere on a \ac{BS}.
-	d) The detection of a single photon heralds the entanglement between the \acp{NV}.
-	e) Performance comparison between Ref.~\cite{Humphreys2018} and near-future experiments.}
+	A laser pulse resonant with the $\ket\uparrow$ state, entangles the presence of a photon with the state of each \ac{NV}.
+	The two photonic modes interfere on a \ac{BS}.
+	The detection of a single photon heralds the entanglement between the \acp{NV}.
+	b) Performance comparison between Ref.~\cite{Humphreys2018} and near-future experiments.}
 	\label{fig:sce_scheme}
 \end{figure}
 
@@ -124,7 +126,8 @@ There are then two categories of triparite genuinely entangled states: the ones 
 Generation of remote GHZ states have been demonstrated on the photonic platform \cite{Bouwmeester1999}, and local GHZ states have been generated with \ac{NV} centres \todo{Did we publish it? There is definitely a GHZ folder in the drive}. Moving beyond two-node experiments requires the generation of remote genuine multipartite entanglement. \autoref{fig:3node_scheme} shows the proposed experimental sequence to generate a GHZ state among three remote \ac{NV} centres.
 
 \begin{figure}
-	\missingfigure[figwidth=\textwidth, figheight=0.6\textwidth]{The 3-node scheme. Experimental sequence, phase stabilisation.}
+%	\missingfigure[figwidth=\textwidth, figheight=0.6\textwidth]{The 3-node scheme. Experimental sequence, phase stabilisation.}
+	\includegraphics[width=\textwidth]{images/figure3}
 	\caption{Generation of a remote GHZ state with three \ac{NV} centres.}
 	\label{fig:3node_scheme}
 \end{figure}
@@ -184,7 +187,8 @@ The objective of the experiment is to generate entanglement between two nodes us
 An implementation-agnostic microcontroller with a custom operating system (nodeOS) would control each setup, sending commands to a second microcontroller that knows the specific of the system (in our case an NV centre). A schematic of the experiment is depicted in \autoref{fig:link_layer_experiment}.
 
 \begin{figure}
-	\missingfigure[figwidth=\textwidth, figheight=0.4\textwidth]{Link layer experiment scheme. The two NVs, the BS, the ADwins and the AWGs. On top of that the two nodeOS controller, talking to each other.}
+%	\missingfigure[figwidth=\textwidth, figheight=0.4\textwidth]{Link layer experiment scheme. The two NVs, the BS, the ADwins and the AWGs. On top of that the two nodeOS controller, talking to each other.}
+	\includegraphics[width=\textwidth]{images/figure4}
 	\caption{Link layer experimental scheme.}
 	\label{fig:link_layer_experiment}
 \end{figure}
@@ -200,8 +204,9 @@ Teleportation of quantum states is required by several quantum algorithms \todo{
 With four network nodes it is possible to deterministically teleport an entangled state to nodes that are not directly connected, allowing them, for example, to run \ac{QKD}. \autoref{fig:ent_teleport} depicts the experimental scheme. 
 
 \begin{figure}
-	\missingfigure[figwidth=\textwidth, figheight=0.4\textwidth]{Entanglement teleportation experimental scheme.}
-	\caption{Entanglement teleportation experimental scheme. Nodes A and B generate an entangled state with the \ac{SCE} protocol. The state is swapped to the respective memories. A generates entanglement with C, while B generate entanglement with D. A and B perform a joint state measurement and announce their results. C and D share an entangled state. }
+%	\missingfigure[figwidth=\textwidth, figheight=0.4\textwidth]{Entanglement teleportation experimental scheme.}
+	\includegraphics[width=\textwidth]{images/figure5}
+	\caption{Entanglement teleportation experimental scheme. Nodes A and B generate an entangled state with the \ac{SCE} protocol. The state is swapped to the respective memories. A generates entanglement with C, while B generates entanglement with D. A and B perform a joint state measurement and announce their results. C and D share an entangled state. }
 	\label{fig:ent_teleport}
 \end{figure}
 
@@ -218,7 +223,7 @@ A proof of principle experiment on the photonic platform was realized in 2012 \c
 The client would teleport, one at a time, random quantum states of the form $\ket\theta_j = (\ket 0 + e^{i \theta_j}\ket 1)/\sqrt 2$, with $\theta_j \in \lbrace0, \pi/4,\ldots,7\pi/4\rbrace$. The server, upon receiving the qubits, stores them in quantum memories and applies C-Phase gates to consecutive qubits.
 At this point the client will communicate which measurements to perform (and in which bases). This allows the client to perform universal quantum computation, without sharing private information with the server. The readout bases, and the measurement outcomes, must be combined with the knowledge of the initial states (that only the client has) to obtain information about the computation performed and/or the result.
 
-To perform this experiment on our platform we need to store multiple qubits on the ${}^{13}C$ quantum memories while generating more entanglement. As discussed in \autoref{sec:teleportation}, an increase in the lifetime on the memories is necessary (by at least an order of magnitude with respect to the current value) to be able to run more than one round \ac{SCE} generation. 
+To perform this experiment on our platform we need to store multiple qubits on the ${}^{13}C$ quantum memories while generating more entanglement. As discussed in \autoref{sec:teleportation}, an increase in the lifetime on the memories is necessary (by at least an order of magnitude with respect to the current value) to be able to run more than one round of \ac{SCE} generation. 
 A viable alternative, which is being researched in our group, is the combined use of close-by NV centres. One of the NV centres is used as an optical interface to generate remote entanglement. Once entanglment is established, the state can be swapped to the second NV centre, which has then access to several quantum memories. In this way the memories would not experience the decoherence due to the entanglement generation attempts.
 
 \section{Ph.D. time-line}
