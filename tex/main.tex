@@ -8,7 +8,7 @@
 %	eulermath
 %	]{classicthesis}
 \usepackage{geometry}
-\geometry{lmargin=2.5cm,rmargin=2.5cm,bmargin=2.5cm,tmargin=2.5cm}
+\geometry{lmargin=2cm,rmargin=2cm,bmargin=2cm,tmargin=2cm}
 % ACRONYMS
 \usepackage[printonlyused]{acronym}
 \acrodef{NV}{Nitrogen-Vacancy}
@@ -27,6 +27,7 @@
 \acrodef{DD}{Dynamical Decoupling}
 \acrodef{ZPL}{Zero Phonon Line}
 \acrodef{TPQI}{Two-photon Quantum Interference}
+\acrodef{FPGA}{Field Programmable Gate Array}
 % END ACRONYMS
 
 \usepackage{siunitx}
@@ -92,6 +93,7 @@ A node of such a network needs to: 1) generate entangled states with other nodes
 
 \begin{figure}
 %	\missingfigure[figwidth=\textwidth, figheight=0.8\textwidth]{A nice figure to summarise the NV centre properties. Defect picture, level structure, optical transitions, coherence time, carbon control, entanglement.}
+	\centering
 	\includegraphics[width=\textwidth]{images/figure1}
 	\caption{The \ac{NV} centre as a quantum network node. 
 		a) The \ac{NV} is an atomic defect in diamond consisting of a neighbouring vacancy and substitutional nitrogen atom.
@@ -108,15 +110,16 @@ Recent work from our group demonstrated the on-demand generation of remote entan
 \autoref{fig:sce_scheme} summarises the \ac{SCE} protocol. If only a single photon was detected at the end of the protocol, the state of the two \acp{NV} would be $\ket\psi = \ket{\uparrow\downarrow} + e^{i\theta}\ket{\downarrow\uparrow}$, a maximally entangled state, where $\theta$ is the optical phase difference between the two photons. Since our detectors cannot discriminate between one or more incoming photons, the state of two \acp{NV} is actually, in the limit of small probability of detection, $\rho = (1-\alpha)\ket\psi\bra\psi + \alpha\ket{\uparrow\uparrow}\bra{\uparrow\uparrow}$.
 \todo[inline]{Do I actually want to write this stuff here?}
 
-\begin{figure}
+\begin{figure}[h]
 %	\missingfigure[figwidth=\textwidth, figheight=0.6\textwidth]{The SCE protocol. Also new vs. old comparison}
-	\includegraphics[width=\textwidth]{images/figure2}
+	\centering
+	\includegraphics[width=0.9\textwidth]{images/figure2}
 	\caption{The \acf{SCE} protocol.
 	a) Two remote \acp{NV} are put in a superposition state $\ket\alpha = \sqrt\alpha\ket\uparrow + \sqrt{1-\alpha^2}\ket\downarrow$ via a \ac{MW} pulse.
-	A laser pulse resonant with the $\ket\uparrow$ state, entangles the presence of a photon with the state of each \ac{NV}.
+	A laser pulse resonant with the $\ket\uparrow$ state entangles the presence of a photon with the state of each \ac{NV}.
 	The two photonic modes interfere on a \ac{BS}.
 	The detection of a single photon heralds the entanglement between the \acp{NV}.
-	b) Performance comparison between Ref.~\cite{Humphreys2018} and near-future experiments.}
+	b) Performance comparison between Ref.~\cite{Humphreys2018} and near-future experiments (see \autoref{tab:sce_params}).}
 	\label{fig:sce_scheme}
 \end{figure}
 
@@ -131,18 +134,20 @@ There are then two categories of triparite genuinely entangled states: the ones 
 
 Generation of remote GHZ states have been demonstrated on the photonic platform \cite{Bouwmeester1999}, and local GHZ states have been generated with \ac{NV} centres \todo{Did we publish it? There is definitely a GHZ folder in the drive}. Moving beyond two-node experiments requires the generation of remote genuine multipartite entanglement. \autoref{fig:3node_scheme} shows the proposed experimental sequence to generate a GHZ state among three remote \ac{NV} centres.
 
-\begin{figure}
+\begin{figure}[h]
 %	\missingfigure[figwidth=\textwidth, figheight=0.6\textwidth]{The 3-node scheme. Experimental sequence, phase stabilisation.}
+	\centering
 	\includegraphics[width=\textwidth]{images/figure3}
-	\caption{Generation of a remote GHZ state with three \ac{NV} centres.}
+	\caption{
+		Generation of a remote GHZ state with three \ac{NV} centres.
+		a) The experimental sequence: A first round of \acf{SCE} between nodes A and B. Then node B performs a \textsc{SWAP} gate between the electronic spin and the carbon atom. Node B is then ready to run \ac{SCE} again, this time with node C. Finally a local controlled-operation on node B, followed by a measurement of the electron and announcement of the result creates the desired state. The entanglement witness can then be measured.
+		b) Layout of the two interferometers to be used. One connects A to B, for the first round of \ac{SCE}, and the other B to C, for the final round of \ac{SCE}. The two optical phases differences $\Delta\theta_1$ and $\Delta\theta_2$ need to be stabilised during the entanglement attempts. The physical implementation of the interferometer will make use of an optical switch, such that the same two detectors can be used for both \ac{SCE} rounds.
+	}
 	\label{fig:3node_scheme}
 \end{figure}
 
 The experiment requires three experimental setups. Two of them, named LT3 and LT4 (Low-Temperature) are the same setups used in Refs.~\cite{Kalb2017, Humphreys2018}.
 In the first year of my Ph.D. I built a new setup, named LT5, which has the same functionalities of the other setups and some upgrades to make it easier to use and more performant. The new setup is in a new laboratory, approximately \SI{20}{m} from the other two setups, which are \SI{1}{m} apart.
-
-
-In \autoref{fig:sce_scheme}d there is a comparison between the results in Ref.~\cite{Humphreys2018} and estimated entanglement fidelities and rates with near-future experimental parameters (reported in~\autoref{tab:sce_params}). 
 
 \begin{table}
 	\begin{center}
@@ -159,6 +164,8 @@ In \autoref{fig:sce_scheme}d there is a comparison between the results in Ref.~\
 	\caption{Comparison of experimental parameters for \ac{SCE}. $p_\text{det}$ is the probability of detecting a photon in the \ac{ZPL}. $\sigma_\theta$ is the phase uncertainty of the stabilised interferometer. $p_\text{2exc}$ is the probability that the \ac{NV} had already been excited during the pulse if a photon is detected after the pulse. $\mathcal V$ is the visibility of the \ac{TPQI}. $N_{1/e}$ is the lifetime of the quantum memory (see main text). $t_\text{ent}$ is the duration of one entanglement attempt. $B_z$ is the external magnetic field applied to the \ac{NV}.}
 	\label{tab:sce_params}
 \end{table}
+
+In \autoref{fig:sce_scheme}d there is a comparison between the results in Ref.~\cite{Humphreys2018} and estimated entanglement fidelities and rates with near-future experimental parameters (reported in~\autoref{tab:sce_params}). 
  
 After the first round of \ac{SCE} is executed, the state of the central node needs to be saved on a memory qubit. This will be done via a SWAP operation similar to the one used in Ref.~\cite{Kalb2017}.
 A second round of \ac{SCE} will then take place, which will have a timeout, because of the decoherence of the first entangled state. If a second \ac{SCE} is successful within the timeout window, a local controlled gate on the central node will entangle the electron and carbon, therefore generating a 4-qubit entangled state. By measuring the electron of the central node, and feeding back the result to the other nodes it is possible to generate a GHZ state among the three nodes.
@@ -171,7 +178,7 @@ An efficient way to show that a state is entangled is measuring entanglement wit
 
 \begin{figure}
 	\includegraphics[width=\textwidth, trim=1cm 1cm 3cm 1cm 0cm]{../images/witness.pdf}
-	\caption{Simulation of $\mathcal W_\text{GHZ}$ with near-future experimental parameters. The solid lines on the plot represent curves where the witness value is constant. The dashed lines represent the time (in minutes) that it will take to generate such a state.}
+	\caption{Simulation of $\mathcal W_\text{GHZ}$ with near-future experimental parameters (see \autoref{tab:sce_params}). The solid lines on the plot represent curves where the witness value is constant. The dashed lines represent the time (in minutes) that it will take to generate such a state. The maximum achievable fidelity, in realistic experimental times, is therefore $\approx 0.75$.}
 	\label{fig:witness}
 \end{figure}
 
@@ -195,7 +202,10 @@ An implementation-agnostic microcontroller with a custom operating system (nodeO
 \begin{figure}
 %	\missingfigure[figwidth=\textwidth, figheight=0.4\textwidth]{Link layer experiment scheme. The two NVs, the BS, the ADwins and the AWGs. On top of that the two nodeOS controller, talking to each other.}
 	\includegraphics[width=\textwidth]{images/figure4}
-	\caption{Link layer experimental scheme.}
+	\caption{Link layer experimental scheme. 
+		In the Physical layer two \ac{NV} centre nodes will be connected via an optical link (like in the \ac{SCE} protocol). Each node has a time-deterministic microcontroller ($\mu C$) that controls the node on a \SI{}{\micro s} time scale. Tasks that require \SI{}{\nano s} resolution are handled by an \acf{AWG}. At the detection point, a \acf{FPGA} heralds entanglement generation and communicate success (or failure) to the nodes.
+		In the Link layer a microcontroller for each node will run a custom operating system (nodeOS) which is not aware of the experimental details of the Physical layer, and only knows some details of the  implementation to perform real time optimization of the resources. It will communicate with the experimental setup via a protocol currently being developed called \acf{CQC}. This will allow the Link layer to generate entanglement and to perform quantum programs without the need to reprogram the experimental setup. The nodes on the Link layer will communicate with each other on a classical link (for example Internet).
+	}
 	\label{fig:link_layer_experiment}
 \end{figure}
 
