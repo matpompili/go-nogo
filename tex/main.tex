@@ -28,6 +28,7 @@
 \acrodef{ZPL}{Zero Phonon Line}
 \acrodef{TPQI}{Two-photon Quantum Interference}
 \acrodef{FPGA}{Field Programmable Gate Array}
+\acrodef{CQC}{Classical Quantum Combiner}
 % END ACRONYMS
 
 \usepackage{siunitx}
@@ -62,8 +63,14 @@
 \maketitle
 
 \section*{Introduction}
-\todo{Write a real introduction}A perfect introduction here.
-\blindtext[2]
+%\todo{Write a real introduction}A perfect introduction here.
+%\blindtext[2]
+
+Quantum networks are expected to deliver definitive communication security, enhanced metrology and distributed quantum computing. 
+A node of such a network must be capable of running small quantum computations, storing quantum information in memory qubits and generate entanglement with neighbouring nodes.
+The nitrogen-vacancy (NV) in diamond is a strong candidate to act as node, as it combines all the mentioned requirements in a solid-state system. Recent experiments in our group demonstrated fast entanglement generation between two remote nodes and complex protocols such as entanglement purification.
+
+Here we propose a Ph.D. research project to move beyond two-node experiments, where both the number of connected nodes and the scalability of the platform will be increased, effectively moving towards the first  application-ready quantum network.
 
 \setcounter{secnumdepth}{1}
 \setcounter{tocdepth}{1}
@@ -204,13 +211,14 @@ An implementation-agnostic microcontroller with a custom operating system (nodeO
 	\includegraphics[width=\textwidth]{images/figure4}
 	\caption{Link layer experimental scheme. 
 		In the Physical layer two \ac{NV} centre nodes will be connected via an optical link (like in the \ac{SCE} protocol). Each node has a time-deterministic microcontroller ($\mu C$) that controls the node on a \SI{}{\micro s} time scale. Tasks that require \SI{}{\nano s} resolution are handled by an \acf{AWG}. At the detection point, a \acf{FPGA} heralds entanglement generation and communicate success (or failure) to the nodes.
-		In the Link layer a microcontroller for each node will run a custom operating system (nodeOS) which is not aware of the experimental details of the Physical layer, and only knows some details of the  implementation to perform real time optimization of the resources. It will communicate with the experimental setup via a protocol currently being developed called \acf{CQC}. This will allow the Link layer to generate entanglement and to perform quantum programs without the need to reprogram the experimental setup. The nodes on the Link layer will communicate with each other on a classical link (for example Internet).
+		In the Link layer a microcontroller for each node will run a custom operating system (nodeOS) which is not aware of the experimental details of the Physical layer, and only knows some details of the  implementation to perform real time optimization of the resources. It will communicate with the experimental setup via a protocol currently being developed, the name of which is still to be decided (TBD). This will allow the Link layer to generate entanglement and to perform quantum gates without the need to reprogram the experimental setup. The nodes on the Link layer will communicate with each other on a classical link (for example Internet). In the future they will communicate with the layer above, the Quantum Network layer, via a protocol called \acf{CQC}, which is being developed at QuTech.
 	}
 	\label{fig:link_layer_experiment}
 \end{figure}
 
-The nodeOS controllers will communicate with each other using a direct classical link (an optical fibre, for example), while in the future implementations they would communicate on the Internet. The communication with the Physical link will use a protocol currently in development \todo{Check CQC}(\ac{CQC}) that will later be used on a metropolitan scale in the Demonstrator project.
+The nodeOS controllers will communicate with each other using a direct classical link (an optical fibre, for example), while in the future implementations they would communicate on the Internet. The communication with the Physical link will use a protocol, currently in development, that will later be used on a metropolitan scale in the Demonstrator project.
 The Link layer will also be able to execute simple quantum operations on the entangled qubits, making it possible to run different small-scale quantum programs without the need to reprogram the experimental setups.
+The next layer of the stack will be the Quantum Network layer, which will communicate with the nodeOS on the Link layer with a protocol called \acf{CQC} (also in development).
 
 \todo[inline]{Discuss about current AWG limitations?}
 
@@ -290,8 +298,7 @@ As an \ac{ESR} in the \ac{MSCA} \ac{ITN} Spin-NANO, I have to carry out outreach
 
 \section*{Acknowledgements}
 \addcontentsline{toc}{section}{Acknowledgements}
-\todo{actually thank people}
-I would like to thank everybody.
+I would like to thank Sophie Hermans, Simon Baier, Hans Beukers, Bas Drikse and Axel Dahlberg for helpful discussions on the future experiments.
 
 \section*{Appendix}
 \addcontentsline{toc}{section}{Appendix}
