@@ -1,6 +1,7 @@
 % !TeX spellcheck = en_GB
-\documentclass[a4paper, twoside]{article}
+\documentclass[a4paper]{article}
 %\usepackage[british, UKenglish]{babel}
+%TODO remove drafting
 \input{classicthesis-config}
 %\usepackage[
 %	drafting, %TODO remove drafting
@@ -68,7 +69,6 @@
 \tableofcontents
 
 \newpage
-\pagestyle{plain}
 \section{Research goals}
 The goal of my Ph.D. is:\\\\
 \makebox[\textwidth]{\underline{\textsc{Demonstration of quantum applications on a multi-node network}}}\\\\
@@ -93,7 +93,13 @@ A node of such a network needs to: 1) generate entangled states with other nodes
 \begin{figure}
 %	\missingfigure[figwidth=\textwidth, figheight=0.8\textwidth]{A nice figure to summarise the NV centre properties. Defect picture, level structure, optical transitions, coherence time, carbon control, entanglement.}
 	\includegraphics[width=\textwidth]{images/figure1}
-	\caption{The \ac{NV} centre as a quantum network node. a) The \ac{NV} is an atomic defect in diamond with trapped ion-like properties. b) Spin selective optical transitions allow for high-fidelity initialization and single-shot read-out. c) Neighbouring $C^{13}$ atoms can be used as quantum memories. d) Entanglement can be generated among remote \acp{NV}.}
+	\caption{The \ac{NV} centre as a quantum network node. 
+		a) The \ac{NV} is an atomic defect in diamond consisting of a neighbouring vacancy and substitutional nitrogen atom.
+		b) After capturing an electron from the environment the centre becomes negatively charged (\ac{NV}${}^-$) and forms a spin triplet with a zero field splitting of \SI{2.88}{GHz}. An external magnetic field $B_z$ lifts the $m_s = \pm 1$ degeneracy \cite{Doherty2013}.
+		c) At cryogenic temperatures (\SI{4}{K}) spin selective optical transitions allow high fidelity single-shot readout (\textsc{RO}) and initialization via spin pumping (\textsc{SP}) \cite{Robledo2011}. Microwave (\acs{MW}) pulses allow coherent manipulation of the spin state.
+		d) Non-purified diamond presents a \SI{1.1}{\percent} natural abundance of ${}^{13} C$ atoms ($S = 1/2$) which couple to the \ac{NV} centre via a distance-dependent hyperfine coupling. This enables selective addressing of these  ${}^{13} C$ atoms and universal gates have been shown, making them a good candidate to act as quantum memories \cite{Taminiau2014}.
+		e) \acf{DD} sequences, tailored to the unique ${}^{13} C$ environment of each \ac{NV} centre, extend coherence times from ${T_2}^* \approx $ \SI{5}{\micro s} to ${T_2}^{DD} > $ \SI{1}{s} \cite{Abobeih2018}.
+		f) The combination of these properties makes it possible to entangle remote \ac{NV} centres via photon mediated protocols and run complex schemes such as entanglement purification and loop-hole free tests of Bell inequalities \cite{Kalb2017, Hensen2015}.}
 	\label{fig:nv_summary}
 \end{figure}
 
